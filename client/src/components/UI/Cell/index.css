@@ -1,0 +1,12 @@
+.cell {
+    width: var(--cell-width);
+    height: var(--cell-height);
+    border: solid 1px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell.selected {
+    background-color: aqua;
+}
