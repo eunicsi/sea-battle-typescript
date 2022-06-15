@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './app.css'
+import './index.css'
 import { Board } from './components/models/Board';
-import BoardComponent from './components/UI/Board/BoardComponent';
+import BoardComponent from './components/UI/BoardComponent';
+import AvailableShips from './components/UI/AvailableShips';
 
 function App() {
     const [firstBoard, setFirstBoard] = useState(new Board());
@@ -12,17 +13,22 @@ function App() {
     }, []);
 
     const restart = () => {
-        const newBoard = new Board();
-        newBoard.initCells();
-        setFirstBoard(newBoard);
-        setSecondBoard(newBoard);
+        const newFirstBoard = new Board();
+        const newSecondBoard = new Board();
+        newFirstBoard.initCells();
+        newSecondBoard.initCells();
+        setFirstBoard(newFirstBoard);
+        setSecondBoard(newSecondBoard);
     }
 
     return (
-        <div className="app">
-            <button onClick={restart}>restart</button>
-            <BoardComponent board={firstBoard}/>
-            <BoardComponent board={secondBoard}/>
+        <div className="w-screen h-screen flex flex-row justify-evenly items-center bg-slate-300 bg-gradient-to-tl from-indigo-300">
+            <AvailableShips />
+            <div className="w-screen h-screen flex flex-col justify-evenly items-center">
+                <button onClick={restart}>restart</button>
+                <BoardComponent board={firstBoard}/>
+                <BoardComponent board={secondBoard}/>
+            </div>
         </div>
     );
 }
